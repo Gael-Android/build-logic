@@ -1,3 +1,17 @@
+# ============================================================================
+# IMPORTANT: This is a REFERENCE TEMPLATE, not for direct use!
+#
+# How to use:
+#   1. Copy required entries to your project's gradle/libs.versions.toml
+#   2. Adjust values to match your project configuration
+#   3. The build-logic submodule reads from ../gradle/libs.versions.toml
+#
+# ⚠️ Gradle 9 Restriction:
+#   - Empty strings are NOT allowed in version catalog
+#   - ❌ featureModule = ""        → Error: "Empty version for plugin alias"
+#   - ✅ featureModule = "none"    → Use placeholder, convention plugin filters it
+# ============================================================================
+
 [versions]
 # Build tools
 agp = "9.0.0-rc02"
@@ -15,7 +29,7 @@ projectPackagePrefix = "com.plcoding"
 projectApplicationNamespace = "com.plcoding.chirp"
 # iOS Framework name (optional, falls back to pathToFrameworkName() if not set)
 projectIosFrameworkBaseName = "ComposeApp"
-# Feature module core dependencies (optional, empty string to skip)
+# Feature module core dependencies (use "none" to skip, empty string causes Gradle 9 error)
 featureCorePresentationModule = ":core:presentation"
 featureCoreDesignSystemModule = ":core:designsystem"
 
