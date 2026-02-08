@@ -1,6 +1,5 @@
 import buildlogic.convention.applyHierarchyTemplate
 import buildlogic.convention.configureAndroidLibraryTarget
-import buildlogic.convention.configureDesktopTarget
 import buildlogic.convention.configureIosTargets
 import buildlogic.convention.libs
 import org.gradle.api.Plugin
@@ -31,7 +30,6 @@ class CmpApplicationConventionPlugin: Plugin<Project> {
 
             configureAndroidLibraryTarget()
             configureIosTargets()
-            configureDesktopTarget()
 
             extensions.configure<KotlinMultiplatformExtension> {
                 applyHierarchyTemplate()

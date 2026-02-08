@@ -12,18 +12,6 @@ class CmpFeatureConventionPlugin: Plugin<Project> {
             }
 
             dependencies {
-                // Optional core module dependencies (configurable via Version Catalog)
-                // Use "none" as placeholder in Gradle 9+ (empty strings not allowed)
-                libs.findVersion("featureCorePresentationModule")
-                    .map { it.toString() }
-                    .filter { it.isNotBlank() && it != "none" && it.startsWith(":") }
-                    .ifPresent { "commonMainImplementation"(project(it)) }
-
-                libs.findVersion("featureCoreDesignSystemModule")
-                    .map { it.toString() }
-                    .filter { it.isNotBlank() && it != "none" && it.startsWith(":") }
-                    .ifPresent { "commonMainImplementation"(project(it)) }
-
                 "commonMainImplementation"(platform(libs.findLibrary("koin-bom").get()))
                 "androidMainImplementation"(platform(libs.findLibrary("koin-bom").get()))
 
