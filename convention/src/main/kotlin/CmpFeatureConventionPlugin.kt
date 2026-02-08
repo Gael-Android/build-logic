@@ -12,17 +12,6 @@ class CmpFeatureConventionPlugin: Plugin<Project> {
             }
 
             dependencies {
-                // Optional core module dependencies (configurable via Version Catalog)
-                libs.findVersion("featureCorePresentationModule")
-                    .map { it.toString() }
-                    .filter { it.isNotBlank() }
-                    .ifPresent { "commonMainImplementation"(project(it)) }
-
-                libs.findVersion("featureCoreDesignSystemModule")
-                    .map { it.toString() }
-                    .filter { it.isNotBlank() }
-                    .ifPresent { "commonMainImplementation"(project(it)) }
-
                 "commonMainImplementation"(platform(libs.findLibrary("koin-bom").get()))
                 "androidMainImplementation"(platform(libs.findLibrary("koin-bom").get()))
 

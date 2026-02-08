@@ -11,7 +11,7 @@ Kotlin Multiplatform (KMP) 및 Compose Multiplatform (CMP) 프로젝트를 위�
 - **프로젝트 독립적**: 하드코딩된 값 없이 Version Catalog에서 설정을 읽어옴
 - **Git Submodule 지원**: 여러 프로젝트에서 동일한 빌드 로직 공유 가능
 - **AGP 9.0 호환**: 최신 Android Gradle Plugin과 호환
-- **멀티플랫폼 지원**: Android, iOS, Desktop 타겟 자동 구성
+- **멀티플랫폼 지원**: Android, iOS 타겟 자동 구성
 
 ---
 
@@ -110,7 +110,7 @@ featureCoreDesignSystemModule = ":core:designsystem"
 
 | Plugin ID | 용도 |
 |-----------|------|
-| `com.yourssu.convention.kmp.library` | KMP 라이브러리 모듈 (Android + iOS + Desktop) |
+| `com.yourssu.convention.kmp.library` | KMP 라이브러리 모듈 (Android + iOS) |
 | `com.yourssu.convention.cmp.library` | CMP 라이브러리 모듈 (KMP + Compose Multiplatform) |
 | `com.yourssu.convention.cmp.application` | CMP 앱 모듈 (메인 Compose 앱) |
 | `com.yourssu.convention.cmp.feature` | CMP Feature 모듈 (ViewModel, Navigation 등 포함) |
@@ -216,7 +216,6 @@ kotlin {
 **자동으로 구성되는 타겟:**
 - Android (com.android.kotlin.multiplatform.library)
 - iOS (iosX64, iosArm64, iosSimulatorArm64)
-- Desktop (JVM)
 
 **사용 예시:**
 ```kotlin

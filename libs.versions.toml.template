@@ -1,3 +1,17 @@
+# ============================================================================
+# IMPORTANT: This is a REFERENCE TEMPLATE, not for direct use!
+#
+# How to use:
+#   1. Copy required entries to your project's gradle/libs.versions.toml
+#   2. Adjust values to match your project configuration
+#   3. The build-logic submodule reads from ../gradle/libs.versions.toml
+#
+# ⚠️ Gradle 9 Restriction:
+#   - Empty strings are NOT allowed in version catalog
+#   - ❌ featureModule = ""        → Error: "Empty version for plugin alias"
+#   - ✅ featureModule = "none"    → Use placeholder, convention plugin filters it
+# ============================================================================
+
 [versions]
 # Build tools
 agp = "9.0.0-rc02"
@@ -13,11 +27,6 @@ androidTools = "32.0.0-rc02"
 # === Build-logic settings ===
 projectPackagePrefix = "com.plcoding"
 projectApplicationNamespace = "com.plcoding.chirp"
-# iOS Framework name (optional, falls back to pathToFrameworkName() if not set)
-projectIosFrameworkBaseName = "ComposeApp"
-# Feature module core dependencies (optional, empty string to skip)
-featureCorePresentationModule = ":core:presentation"
-featureCoreDesignSystemModule = ":core:designsystem"
 
 # Compose
 compose-multiplatform = "1.10.0"
@@ -65,12 +74,8 @@ projectTargetSdkVersion = "36"
 projectCompileSdkVersion = "36"
 projectVersionCode = "1"
 
-# Desktop Version
-desktopPackageName = "Chirp"
-desktopPackageVersion = "1.0.0"
 runner = "1.7.0"
 junit = "1.3.0"
-jsystemthemedetector = "3.9.1"
 coreKtx = "1.17.0"
 
 [libraries]
@@ -149,9 +154,6 @@ moko-permissions-notifications = { module = "dev.icerock.moko:permissions-notifi
 
 # Logging
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
-
-# Desktop
-jsystemthemedetector = { module = "com.github.Dansoftowner:jSystemThemeDetector", version.ref = "jsystemthemedetector" }
 
 android-desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
