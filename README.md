@@ -83,16 +83,12 @@ projectVersionCode = "1"
 
 # Android SDK 버전
 projectMinSdkVersion = "26"
-projectTargetSdkVersion = "35"
-projectCompileSdkVersion = "35"
+projectTargetSdkVersion = "36"
+projectCompileSdkVersion = "36"
 
 # ===== 선택 설정 =====
 # iOS Framework 이름 (미설정 시 모듈 경로에서 자동 생성)
 projectIosFrameworkBaseName = "ComposeApp"
-
-# Feature 모듈의 core 의존성 (빈 문자열이면 추가 안함)
-featureCorePresentationModule = ":core:presentation"
-featureCoreDesignSystemModule = ":core:designsystem"
 ```
 
 ---
@@ -164,8 +160,9 @@ Compose Multiplatform 라이브러리 설정을 제공합니다.
 
 **자동으로 추가되는 의존성:**
 - Compose UI, Foundation, Material3
+- Material Icons Core
 - Compose Resources
-- UI Tooling Preview
+- UI Tooling Preview (commonMain) / UI Tooling (androidMain)
 
 **사용 예시:**
 ```kotlin
@@ -189,11 +186,10 @@ Feature 모듈을 위한 설정을 제공합니다. ViewModel, Navigation, Koin 
 - `convention.cmp.library` (위의 모든 설정 포함)
 
 **자동으로 추가되는 의존성:**
-- `:core:presentation`, `:core:designsystem` (Version Catalog에서 설정한 경우)
 - Koin (DI)
-- Lifecycle ViewModel
+- Lifecycle ViewModel & SavedState
 - Navigation Compose
-- SavedState
+- Jetbrains Compose Runtime & Bundle
 
 **사용 예시:**
 ```kotlin
@@ -211,7 +207,7 @@ kotlin {
 
 ### `convention.cmp.application`
 
-메인 Compose Multiplatform 앱 모듈 설정입니다.
+메인 Compose Multiplatform 앱 모듈 설정입니다. AGP 9.0 호환: `com.android.kotlin.multiplatform.library`를 사용하며, 실제 Android 앱 진입점(MainActivity, Application)은 별도의 `:androidApp` 모듈에 두어야 합니다.
 
 **자동으로 구성되는 타겟:**
 - Android (com.android.kotlin.multiplatform.library)
@@ -233,7 +229,7 @@ kotlin {
 
 ### `convention.room`
 
-Room Database 설정을 제공합니다.
+Room Database 설정을 제공합니다. 스키마는 `$projectDir/schemas`에 저장됩니다.
 
 **자동으로 적용되는 플러그인:**
 - `com.google.devtools.ksp`
@@ -242,7 +238,7 @@ Room Database 설정을 제공합니다.
 **자동으로 추가되는 의존성:**
 - Room Runtime
 - SQLite Bundled
-- Room Compiler (KSP - 모든 타겟)
+- Room Compiler (KSP - Android, iOS 시뮬레이터/기기, Desktop)
 
 **사용 예시:**
 ```kotlin
@@ -261,9 +257,9 @@ kotlin {
 
 ### `convention.buildkonfig`
 
-BuildKonfig 설정을 제공합니다. `local.properties`의 API 키를 코드에서 사용할 수 있게 해줍니다.
+BuildKonfig 설정을 제공합니다. `local.properties`의 API 키를 코드에서 사용할 수 있게 해줍니다. **`API_KEY`가 없으면 빌드 시 오류가 발생합니다.**
 
-**사용 전 설정:**
+**사용 전 설정 (필수):**
 ```properties
 # local.properties
 API_KEY=your_api_key_here
@@ -333,7 +329,6 @@ git commit -m "Update build-logic submodule"
 ### "Missing 'projectPackagePrefix' in libs.versions.toml" 오류
 
 `gradle/libs.versions.toml`에 필수 설정이 누락되었습니다. 위의 "Version Catalog 설정" 섹션을 참고하세요.
-
 ### Submodule 폴더가 비어있음
 
 ```bash
