@@ -10,6 +10,7 @@ dependencies {
     compileOnly(libs.android.gradlePlugin)
     compileOnly(libs.android.tools.common)
     compileOnly(libs.kotlin.gradlePlugin)
+    compileOnly(libs.kotlin.serialization.gradlePlugin)
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.jetbrains.compose.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
@@ -36,39 +37,3 @@ tasks {
     }
 }
 
-gradlePlugin {
-    plugins {
-        register("androidApplication") {
-            id = "com.yourssu.convention.android.application"
-            implementationClass = "AndroidApplicationConventionPlugin"
-        }
-        register("androidComposeApplication") {
-            id = "com.yourssu.convention.android.application.compose"
-            implementationClass = "AndroidApplicationComposeConventionPlugin"
-        }
-        register("cmpApplication") {
-            id = "com.yourssu.convention.cmp.application"
-            implementationClass = "CmpApplicationConventionPlugin"
-        }
-        register("kmpLibrary") {
-            id = "com.yourssu.convention.kmp.library"
-            implementationClass = "KmpLibraryConventionPlugin"
-        }
-        register("cmpLibrary") {
-            id = "com.yourssu.convention.cmp.library"
-            implementationClass = "CmpLibraryConventionPlugin"
-        }
-        register("cmpFeature") {
-            id = "com.yourssu.convention.cmp.feature"
-            implementationClass = "CmpFeatureConventionPlugin"
-        }
-        register("buildKonfig") {
-            id = "com.yourssu.convention.buildkonfig"
-            implementationClass = "BuildKonfigConventionPlugin"
-        }
-        register("room") {
-            id = "com.yourssu.convention.room"
-            implementationClass = "RoomConventionPlugin"
-        }
-    }
-}
