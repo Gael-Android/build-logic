@@ -1,11 +1,8 @@
 import buildlogic.convention.applyHierarchyTemplate
 import buildlogic.convention.configureAndroidLibraryTarget
 import buildlogic.convention.configureIosTargets
-import org.gradle.accessors.dm.LibrariesForLibs
-import org.gradle.kotlin.dsl.the
+import buildlogic.convention.library
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-
-val libs = the<LibrariesForLibs>()
 
 plugins {
     id("com.android.kotlin.multiplatform.library")
@@ -24,15 +21,15 @@ extensions.configure<KotlinMultiplatformExtension> {
 
 dependencies {
     // Core Compose dependencies
-    commonMainImplementation(libs.jetbrains.compose.runtime)
-    commonMainImplementation(libs.jetbrains.compose.foundation)
-    commonMainImplementation(libs.jetbrains.compose.material3)
-    commonMainImplementation(libs.jetbrains.compose.ui)
+    commonMainImplementation(library("jetbrains-compose-runtime"))
+    commonMainImplementation(library("jetbrains-compose-foundation"))
+    commonMainImplementation(library("jetbrains-compose-material3"))
+    commonMainImplementation(library("jetbrains-compose-ui"))
 
     // CMP 1.10.0+: Resources and preview tooling are now separate modules
-    commonMainImplementation(libs.jetbrains.compose.resources)
-    commonMainImplementation(libs.jetbrains.compose.ui.tooling.preview)
+    commonMainImplementation(library("jetbrains-compose-resources"))
+    commonMainImplementation(library("jetbrains-compose-ui-tooling-preview"))
 
     // Single-variant model: use androidMainImplementation instead of debugImplementation
-    androidMainImplementation(libs.jetbrains.compose.ui.tooling)
+    androidMainImplementation(library("jetbrains-compose-ui-tooling"))
 }

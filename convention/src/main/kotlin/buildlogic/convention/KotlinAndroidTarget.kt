@@ -1,11 +1,8 @@
 package buildlogic.convention
 
-import gradle.kotlin.dsl.accessors._1a0bc088e68ff99eb07b399de993c4b5.coreLibraryDesugaring
-import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.the
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
@@ -31,9 +28,7 @@ internal fun Project.configureAndroidTarget() {
  * build.gradle.kts using kotlin { androidLibrary { ... } }
  */
 internal fun Project.configureAndroidLibraryTarget() {
-    val libs = the<LibrariesForLibs>()
-
     dependencies {
-        coreLibraryDesugaring(libs.android.desugarJdkLibs)
+        "coreLibraryDesugaring"(library("android-desugarJdkLibs"))
     }
 }

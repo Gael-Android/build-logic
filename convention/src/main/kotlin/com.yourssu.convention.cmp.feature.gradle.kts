@@ -1,31 +1,28 @@
-import org.gradle.accessors.dm.LibrariesForLibs
-import org.gradle.kotlin.dsl.the
-
-val libs = the<LibrariesForLibs>()
+import buildlogic.convention.library
 
 plugins {
     id("com.yourssu.convention.cmp.library")
 }
 
 dependencies {
-    commonMainImplementation(platform(libs.koin.bom))
-    androidMainImplementation(platform(libs.koin.bom))
+    commonMainImplementation(platform(library("koin-bom")))
+    androidMainImplementation(platform(library("koin-bom")))
 
-    commonMainImplementation(libs.koin.compose)
-    commonMainImplementation(libs.koin.compose.viewmodel)
+    commonMainImplementation(library("koin-compose"))
+    commonMainImplementation(library("koin-compose-viewmodel"))
 
-    commonMainImplementation(libs.jetbrains.compose.runtime)
-    commonMainImplementation(libs.jetbrains.compose.viewmodel)
-    commonMainImplementation(libs.jetbrains.lifecycle.viewmodel)
-    commonMainImplementation(libs.jetbrains.lifecycle.compose)
+    commonMainImplementation(library("jetbrains-compose-runtime"))
+    commonMainImplementation(library("jetbrains-compose-viewmodel"))
+    commonMainImplementation(library("jetbrains-lifecycle-viewmodel"))
+    commonMainImplementation(library("jetbrains-lifecycle-compose"))
 
-    commonMainImplementation(libs.jetbrains.lifecycle.viewmodel.savedstate)
-    commonMainImplementation(libs.jetbrains.savedstate)
-    commonMainImplementation(libs.jetbrains.bundle)
-    commonMainImplementation(libs.jetbrains.compose.navigation)
+    commonMainImplementation(library("jetbrains-lifecycle-viewmodel-savedstate"))
+    commonMainImplementation(library("jetbrains-savedstate"))
+    commonMainImplementation(library("jetbrains-bundle"))
+    commonMainImplementation(library("jetbrains-compose-navigation"))
 
-    androidMainImplementation(libs.koin.android)
-    androidMainImplementation(libs.koin.androidx.compose)
-    androidMainImplementation(libs.koin.androidx.navigation)
-    androidMainImplementation(libs.koin.core.viewmodel)
+    androidMainImplementation(library("koin-android"))
+    androidMainImplementation(library("koin-androidx-compose"))
+    androidMainImplementation(library("koin-androidx-navigation"))
+    androidMainImplementation(library("koin-core-viewmodel"))
 }

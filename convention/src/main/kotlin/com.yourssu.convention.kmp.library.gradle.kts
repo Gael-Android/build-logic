@@ -1,8 +1,5 @@
 import buildlogic.convention.configureKotlinMultiplatform
-import org.gradle.accessors.dm.LibrariesForLibs
-import org.gradle.kotlin.dsl.the
-
-val libs = the<LibrariesForLibs>()
+import buildlogic.convention.library
 
 plugins {
     id("com.android.kotlin.multiplatform.library")
@@ -13,6 +10,6 @@ plugins {
 configureKotlinMultiplatform()
 
 dependencies {
-    commonMainImplementation(libs.kotlinx.serialization.json)
-    commonTestImplementation(libs.kotlin.test)
+    commonMainImplementation(library("kotlinx-serialization-json"))
+    commonTestImplementation(library("kotlin-test"))
 }

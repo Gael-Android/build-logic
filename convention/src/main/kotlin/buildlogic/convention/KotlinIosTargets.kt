@@ -5,7 +5,7 @@ import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 internal fun Project.configureIosTargets() {
-    val frameworkBaseName = libs.findVersion("projectIosFrameworkBaseName")
+    val frameworkBaseName = versionCatalog.findVersion("projectIosFrameworkBaseName")
         .map { it.toString() }
         .filter { it.isNotBlank() }
         .orElse(pathToFrameworkName())

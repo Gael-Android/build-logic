@@ -4,14 +4,7 @@ import org.gradle.api.Project
 import java.util.Locale
 
 fun Project.getPackagePrefix(): String {
-    return libs.findVersion("projectPackagePrefix")
-        .orElseThrow {
-            IllegalStateException(
-                "Missing 'projectPackagePrefix' in libs.versions.toml. " +
-                "Add: projectPackagePrefix = \"com.yourcompany\""
-            )
-        }
-        .toString()
+    return versionValue("projectPackagePrefix")
 }
 
 fun Project.pathToPackageName(): String {
