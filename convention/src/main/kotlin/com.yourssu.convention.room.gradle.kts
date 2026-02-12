@@ -1,5 +1,9 @@
 import androidx.room.gradle.RoomExtension
-import buildlogic.convention.libs
+import gradle.kotlin.dsl.accessors._20eea9be2489819579bbf099e38996c7.commonMainApi
+import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.the
+
+val libs = the<LibrariesForLibs>()
 
 plugins {
     id("com.google.devtools.ksp")
@@ -11,10 +15,10 @@ extensions.configure<RoomExtension> {
 }
 
 dependencies {
-    "commonMainApi"(libs.findLibrary("androidx-room-runtime").get())
-    "commonMainApi"(libs.findLibrary("sqlite-bundled").get())
-    "kspAndroid"(libs.findLibrary("androidx-room-compiler").get())
-    "kspIosSimulatorArm64"(libs.findLibrary("androidx-room-compiler").get())
-    "kspIosArm64"(libs.findLibrary("androidx-room-compiler").get())
-    "kspIosX64"(libs.findLibrary("androidx-room-compiler").get())
+    commonMainApi(libs.androidx.room.runtime)
+    commonMainApi(libs.sqlite.bundled)
+    "kspAndroid"(libs.androidx.room.compiler)
+    "kspIosSimulatorArm64"(libs.androidx.room.compiler)
+    "kspIosArm64"(libs.androidx.room.compiler)
+    "kspIosX64"(libs.androidx.room.compiler)
 }
