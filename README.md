@@ -12,8 +12,18 @@ Kotlin Multiplatform (KMP) 및 Compose Multiplatform (CMP) 프로젝트를 위�
 - **Git Submodule 지원**: 여러 프로젝트에서 동일한 빌드 로직 공유 가능
 - **AGP 9.0 호환**: 최신 Android Gradle Plugin과 호환
 - **멀티플랫폼 지원**: Android, iOS 타겟 자동 구성
+- **자동 Android 설정**: `kmp.library`/`cmp.application` 플러그인은 `androidLibrary {}` 블록을 기본 생성하여 namespace와 SDK 버전을 자동 반영
 
 ---
+
+## 최신 반영 내역 (build-logic 최근 커밋 기준)
+
+- 최신 커밋: `ed222cf` (`feat: auto-configure androidLibrary in convention plugins`, 2026-02-13)
+- 반영 내용:
+  - `kmp.library` 및 `cmp.application`에서 `androidLibrary {}` 블록 자동 적용
+  - `namespace` 기본값은 모듈 경로 기반(`pathToPackageName()`)으로 추론
+  - SDK 버전은 `gradle/libs.versions.toml`의 값으로 주입
+  - 필요한 경우 `kotlin { androidLibrary { ... } }`로 모듈별 오버라이드 가능
 
 ## 사용 방법
 
@@ -131,21 +141,28 @@ KMP 라이브러리의 기본 설정을 제공합니다.
 - `org.jetbrains.kotlin.multiplatform`
 - `org.jetbrains.kotlin.plugin.serialization`
 
+**자동으로 구성되는 Android 설정:**
+- `androidLibrary {}` 블록 기본 생성
+- `namespace`: `projectPackagePrefix` + 모듈 경로(`pathToPackageName()`) 기반으로 자동 산출
+- `minSdk`, `targetSdk`, `compileSdk`: `gradle/libs.versions.toml` 값에서 주입
+- 모듈별 오버라이드:
+  ```kotlin
+  kotlin {
+      androidLibrary {
+          namespace = "com.yourcompany.core.domain"
+      }
+  }
+  ```
+
 **자동으로 추가되는 의존성:**
 - `kotlinx-serialization-json`
 - `kotlin-test` (테스트)
 
-**사용 예시:**
+**사용 예시(기본 동작):**
 ```kotlin
 // core/domain/build.gradle.kts
 plugins {
     alias(libs.plugins.convention.kmp.library)
-}
-
-kotlin {
-    androidLibrary {
-        namespace = "com.yourcompany.core.domain"
-    }
 }
 ```
 
@@ -208,6 +225,8 @@ kotlin {
 ### `convention.cmp.application`
 
 메인 Compose Multiplatform 앱 모듈 설정입니다. AGP 9.0 호환: `com.android.kotlin.multiplatform.library`를 사용하며, 실제 Android 앱 진입점(MainActivity, Application)은 별도의 `:androidApp` 모듈에 두어야 합니다.
+
+`kmp.library`와 동일하게 `androidLibrary {}` 블록 자동 생성 및 `namespace`/SDK 기본값 적용을 지원합니다.
 
 **자동으로 구성되는 타겟:**
 - Android (com.android.kotlin.multiplatform.library)

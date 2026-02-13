@@ -2,6 +2,8 @@ import buildlogic.convention.applyHierarchyTemplate
 import buildlogic.convention.configureAndroidLibraryTarget
 import buildlogic.convention.configureIosTargets
 import buildlogic.convention.library
+import buildlogic.convention.pathToPackageName
+import buildlogic.convention.versionValue
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 plugins {
@@ -14,6 +16,14 @@ plugins {
 
 configureAndroidLibraryTarget()
 configureIosTargets()
+
+kotlin {
+    androidLibrary {
+        namespace = pathToPackageName()
+        compileSdk = versionValue("projectCompileSdkVersion").toInt()
+        minSdk = versionValue("projectMinSdkVersion").toInt()
+    }
+}
 
 extensions.configure<KotlinMultiplatformExtension> {
     applyHierarchyTemplate()

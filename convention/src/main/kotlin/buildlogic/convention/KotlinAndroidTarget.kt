@@ -24,8 +24,9 @@ internal fun Project.configureAndroidTarget() {
 
 /**
  * Configures Android target for LIBRARY modules using com.android.kotlin.multiplatform.library plugin.
- * Android library settings (namespace, compileSdk, minSdk) must be configured in each module's
- * build.gradle.kts using kotlin { androidLibrary { ... } }
+ * Android library settings (namespace, compileSdk, minSdk) are auto-configured in the precompiled
+ * script plugins (kmp.library, cmp.application). Modules can override in build.gradle.kts
+ * using kotlin { androidLibrary { ... } } if needed.
  */
 internal fun Project.configureAndroidLibraryTarget() {
     dependencies {
