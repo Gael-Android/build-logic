@@ -13,9 +13,9 @@ internal fun Project.configureAndroidCompose(
 
     dependencies {
         val bomPlatform = platform(library("androidx-compose-bom"))
-        add("implementation", bomPlatform)
-        add("testImplementation", bomPlatform)
-        add("debugImplementation", library("androidx-compose-ui-tooling-preview"))
-        add("debugImplementation", library("androidx-compose-ui-tooling"))
+        "implementation"(bomPlatform)
+        "testImplementation"(bomPlatform)
+        "debugImplementation"(library("androidx-compose-ui-tooling-preview"))
+        "debugImplementation"(library("androidx-compose-ui-tooling"))
     }
 }
