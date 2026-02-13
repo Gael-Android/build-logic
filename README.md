@@ -60,7 +60,7 @@ include(":androidApp")
 
 템플릿 복사:
 ```bash
-cp build-logic/libs.versions.toml gradle/libs.versions.toml
+cp build-logic/template.libs.versions.toml gradle/libs.versions.toml
 ```
 
 `gradle/libs.versions.toml`에서 프로젝트에 맞게 값 수정:
