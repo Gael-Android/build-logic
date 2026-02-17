@@ -19,7 +19,7 @@ dependencies {
     commonMainImplementation(library("jetbrains-lifecycle-viewmodel-savedstate"))
     commonMainImplementation(library("jetbrains-savedstate"))
     commonMainImplementation(library("jetbrains-bundle"))
-    commonMainImplementation(library("jetbrains-compose-navigation"))
+    commonMainImplementation(library("jetbrains-navigation3-ui"))
 
     androidMainImplementation(library("koin-android"))
     androidMainImplementation(library("koin-androidx-compose"))
