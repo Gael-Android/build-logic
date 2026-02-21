@@ -6,8 +6,9 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 /**
  * Configures Kotlin Multiplatform for library modules.
- * Note: Android library settings (namespace, compileSdk, minSdk, androidResources) must be
- * configured in each module's build.gradle.kts using kotlin { androidLibrary { ... } }
+ * Android library settings (namespace, compileSdk, minSdk) are auto-configured by
+ * configureAndroidLibraryTarget().
+ * Modules can override values in build.gradle.kts using kotlin { android { ... } } if needed.
  */
 internal fun Project.configureKotlinMultiplatform() {
     configureAndroidLibraryTarget()

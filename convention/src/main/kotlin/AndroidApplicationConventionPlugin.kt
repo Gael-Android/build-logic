@@ -16,12 +16,7 @@ class AndroidApplicationConventionPlugin: Plugin<Project> {
 
             extensions.configure<ApplicationExtension> {
                 namespace = libs.findVersion("projectApplicationNamespace")
-                    .orElseThrow {
-                        IllegalStateException(
-                            "Missing 'projectApplicationNamespace' in libs.versions.toml. " +
-                            "Add: projectApplicationNamespace = \"com.yourcompany.yourapp\""
-                        )
-                    }
+                    .get()
                     .toString()
 
                 defaultConfig {
