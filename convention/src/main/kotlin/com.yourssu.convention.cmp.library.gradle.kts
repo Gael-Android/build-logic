@@ -17,6 +17,7 @@ dependencies {
     commonMainImplementation(library("jetbrains-compose-resources"))
     commonMainImplementation(library("jetbrains-compose-ui-tooling-preview"))
 
-    // Single-variant model: use androidMainImplementation instead of debugImplementation
-    androidMainImplementation(library("jetbrains-compose-ui-tooling"))
+    // AGP 9 + com.android.kotlin.multiplatform.library (androidLibrary DSL) requires
+    // tooling on androidRuntimeClasspath for preview support.
+    "androidRuntimeClasspath"(library("jetbrains-compose-ui-tooling"))
 }
