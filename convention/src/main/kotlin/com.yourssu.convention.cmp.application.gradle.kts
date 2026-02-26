@@ -43,4 +43,10 @@ dependencies {
     // AGP 9 + com.android.kotlin.multiplatform.library (androidLibrary DSL) requires
     // tooling on androidRuntimeClasspath for preview support.
     "androidRuntimeClasspath"(library("jetbrains-compose-ui-tooling"))
+
+    // Android compose UI testing
+    val composeTestBom = platform(library("androidx-compose-bom"))
+    "androidTestImplementation"(composeTestBom)
+    "androidTestImplementation"(library("androidx-compose-ui-test-junit4"))
+    "debugImplementation"(library("androidx-compose-ui-test-manifest"))
 }
