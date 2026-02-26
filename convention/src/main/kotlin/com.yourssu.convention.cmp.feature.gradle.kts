@@ -27,9 +27,13 @@ dependencies {
     androidMainImplementation(library("koin-androidx-navigation"))
     androidMainImplementation(library("koin-core-viewmodel"))
 
-    // Android compose UI testing
-    val composeTestBom = platform(library("androidx-compose-bom"))
-    "androidTestImplementation"(composeTestBom)
-    "androidTestImplementation"(library("androidx-compose-ui-test-junit4"))
-    "debugImplementation"(library("androidx-compose-ui-test-manifest"))
+    // Android compose UI testing (only added when Android test configurations exist)
+    if (configurations.findByName("androidTestImplementation") != null) {
+        val composeTestBom = platform(library("androidx-compose-bom"))
+        "androidTestImplementation"(composeTestBom)
+        "androidTestImplementation"(library("androidx-compose-ui-test-junit4"))
+    }
+    if (configurations.findByName("debugImplementation") != null) {
+        "debugImplementation"(library("androidx-compose-ui-test-manifest"))
+    }
 }
