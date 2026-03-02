@@ -5,7 +5,7 @@ import buildlogic.convention.library
 
 dependencies {
     // CMP multiplatform Compose UI 테스트 (commonTest)
-    "commonTestImplementation"(library("jetbrains-compose-ui-test"))
+    "commonTestImplementation"(library("compose-ui-test"))
 
     // Android Instrumented Test
     if (configurations.findByName("androidTestImplementation") != null) {

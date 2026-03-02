@@ -11,16 +11,16 @@ dependencies {
     commonMainImplementation(library("koin-compose"))
     commonMainImplementation(library("koin-compose-viewmodel"))
 
-    commonMainImplementation(library("jetbrains-compose-runtime"))
-    commonMainImplementation(library("jetbrains-compose-viewmodel"))
+    commonMainImplementation(library("compose-runtime"))
+    commonMainImplementation(library("androidx-lifecycle-viewmodel-compose"))
     commonMainImplementation(library("jetbrains-lifecycle-viewmodel"))
-    commonMainImplementation(library("jetbrains-lifecycle-compose"))
-    commonMainImplementation(library("jetbrains-lifecycle-viewmodel-nav3"))
+    commonMainImplementation(library("androidx-lifecycle-runtime-compose"))
+    commonMainImplementation(library("androidx-lifecycle-viewmodel-navigation3"))
 
     commonMainImplementation(library("jetbrains-lifecycle-viewmodel-savedstate"))
     commonMainImplementation(library("jetbrains-savedstate"))
     commonMainImplementation(library("jetbrains-bundle"))
-    commonMainImplementation(library("jetbrains-navigation3-ui"))
+    commonMainImplementation(library("androidx-navigation3-ui"))
 
     androidMainImplementation(library("koin-android"))
     androidMainImplementation(library("koin-androidx-compose"))
