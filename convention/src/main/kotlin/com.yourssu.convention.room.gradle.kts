@@ -1,6 +1,7 @@
 import androidx.room.gradle.RoomExtension
 import buildlogic.convention.commonMainApi
 import buildlogic.convention.kspAndroid
+import buildlogic.convention.kspDesktop
 import buildlogic.convention.kspIosArm64
 import buildlogic.convention.kspIosSimulatorArm64
 import buildlogic.convention.kspIosX64
@@ -22,4 +23,5 @@ dependencies {
     kspIosSimulatorArm64(library("androidx-room-compiler"))
     kspIosArm64(library("androidx-room-compiler"))
     kspIosX64(library("androidx-room-compiler"))
+    kspDesktop(library("androidx-room-compiler"))
 }

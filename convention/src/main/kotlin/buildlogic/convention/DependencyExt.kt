@@ -17,3 +17,6 @@ fun DependencyHandler.kspIosSimulatorArm64(dependencyNotation: Any): Dependency?
 
 fun DependencyHandler.kspIosX64(dependencyNotation: Any): Dependency? =
     add("kspIosX64", dependencyNotation)
+
+fun DependencyHandler.kspDesktop(dependencyNotation: Any): Dependency? =
+    add("kspDesktop", dependencyNotation)

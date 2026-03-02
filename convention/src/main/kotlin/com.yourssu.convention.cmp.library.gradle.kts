@@ -8,16 +8,15 @@ plugins {
 
 dependencies {
     // Core Compose dependencies
-    commonMainImplementation(library("jetbrains-compose-ui"))
-    commonMainImplementation(library("jetbrains-compose-foundation"))
-    commonMainImplementation(library("jetbrains-compose-material3"))
+    commonMainImplementation(library("compose-ui"))
+    commonMainImplementation(library("compose-foundation"))
+    commonMainImplementation(library("compose-material3"))
     commonMainImplementation(library("jetbrains-compose-material-icons-core"))
 
     // CMP 1.10.0+: Resources and preview tooling are now separate modules
-    commonMainImplementation(library("jetbrains-compose-resources"))
-    commonMainImplementation(library("jetbrains-compose-ui-tooling-preview"))
+    commonMainImplementation(library("compose-components-resources"))
+    commonMainImplementation(library("compose-ui-tooling-preview"))
 
-    // AGP 9 + com.android.kotlin.multiplatform.library (androidLibrary DSL) requires
-    // tooling on androidRuntimeClasspath for preview support.
-    "androidRuntimeClasspath"(library("jetbrains-compose-ui-tooling"))
+    // AGP 9 single-variant model: tooling is on androidMainImplementation.
+    "androidMainImplementation"(library("compose-ui-tooling"))
 }

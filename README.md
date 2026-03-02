@@ -11,19 +11,23 @@ Kotlin Multiplatform (KMP) 및 Compose Multiplatform (CMP) 프로젝트를 위�
 - **프로젝트 독립적**: 하드코딩된 값 없이 Version Catalog에서 설정을 읽어옴
 - **Git Submodule 지원**: 여러 프로젝트에서 동일한 빌드 로직 공유 가능
 - **AGP 9.0 호환**: 최신 Android Gradle Plugin과 호환
-- **멀티플랫폼 지원**: Android, iOS 타겟 자동 구성
+- **멀티플랫폼 지원**: Android, iOS, Desktop 타겟 자동 구성
 - **자동 Android 설정**: `kmp.library`/`cmp.application` 플러그인은 `androidLibrary {}` 블록을 기본 생성하여 namespace와 SDK 버전을 자동 반영
+- **Desktop 표준화**: 공통 Desktop 타겟을 `jvm("desktop")`으로 구성하고 `desktopMain` 소스셋을 사용
+- **AGP 9 단일 변형 대응**: Compose tooling 의존성을 `androidMainImplementation`으로 통일
+- **Room Desktop KSP 지원**: `kspDesktop`에 Room Compiler 자동 추가
 
 ---
 
-## 최신 반영 내역 (build-logic 최근 커밋 기준)
+## 최신 반영 내역 (2026-03 기준)
 
-- 최신 커밋: `ed222cf` (`feat: auto-configure androidLibrary in convention plugins`, 2026-02-13)
-- 반영 내용:
-  - `kmp.library` 및 `cmp.application`에서 `androidLibrary {}` 블록 자동 적용
-  - `namespace` 기본값은 모듈 경로 기반(`pathToPackageName()`)으로 추론
-  - SDK 버전은 `gradle/libs.versions.toml`의 값으로 주입
-  - 필요한 경우 `kotlin { androidLibrary { ... } }`로 모듈별 오버라이드 가능
+- `kmp.library`, `cmp.application`에 Desktop 타겟(`jvm("desktop")`) 자동 구성 추가
+- KMP/CMP Android Compose tooling 경로를 `androidMainImplementation`으로 정리
+- `room` 플러그인에 `kspDesktop` 지원 추가
+- `kmp.library`, `cmp.application`의 `androidLibrary {}` 자동 구성 유지
+- `namespace` 기본값은 모듈 경로 기반(`pathToPackageName()`)으로 추론
+- SDK 버전은 `gradle/libs.versions.toml` 값에서 주입
+- 필요 시 `kotlin { androidLibrary { ... } }`로 모듈별 오버라이드 가능
 
 ## 사용 방법
 
@@ -70,7 +74,7 @@ include(":androidApp")
 
 템플릿 복사:
 ```bash
-cp build-logic/template.libs.versions.toml gradle/libs.versions.toml
+cp build-logic/template_desktop_server.libs.versions.toml gradle/libs.versions.toml
 ```
 
 `gradle/libs.versions.toml`에서 프로젝트에 맞게 값 수정:
@@ -116,9 +120,9 @@ projectIosFrameworkBaseName = "ComposeApp"
 
 | Plugin ID | 용도 |
 |-----------|------|
-| `com.yourssu.convention.kmp.library` | KMP 라이브러리 모듈 (Android + iOS) |
+| `com.yourssu.convention.kmp.library` | KMP 라이브러리 모듈 (Android + iOS + Desktop) |
 | `com.yourssu.convention.cmp.library` | CMP 라이브러리 모듈 (KMP + Compose Multiplatform) |
-| `com.yourssu.convention.cmp.application` | CMP 앱 모듈 (메인 Compose 앱) |
+| `com.yourssu.convention.cmp.application` | CMP 앱 모듈 (Android + iOS + Desktop) |
 | `com.yourssu.convention.cmp.feature` | CMP Feature 모듈 (ViewModel, Navigation 등 포함) |
 
 ### 유틸리티 플러그인
@@ -153,6 +157,11 @@ KMP 라이브러리의 기본 설정을 제공합니다.
       }
   }
   ```
+
+**자동으로 구성되는 타겟:**
+- Android (`com.android.kotlin.multiplatform.library`)
+- iOS (`iosX64`, `iosArm64`, `iosSimulatorArm64`)
+- Desktop (`jvm("desktop")`, JVM target 17)
 
 **자동으로 추가되는 의존성:**
 - `kotlinx-serialization-json`
@@ -231,6 +240,9 @@ kotlin {
 **자동으로 구성되는 타겟:**
 - Android (com.android.kotlin.multiplatform.library)
 - iOS (iosX64, iosArm64, iosSimulatorArm64)
+- Desktop (jvm("desktop"))
+
+Desktop 앱 패키징(`compose.desktop { application { ... } }`)은 모듈별 정책이므로 각 앱 모듈 `build.gradle.kts`에서 직접 관리합니다.
 
 **사용 예시:**
 ```kotlin
@@ -348,6 +360,7 @@ git commit -m "Update build-logic submodule"
 ### "Missing 'projectPackagePrefix' in libs.versions.toml" 오류
 
 `gradle/libs.versions.toml`에 필수 설정이 누락되었습니다. 위의 "Version Catalog 설정" 섹션을 참고하세요.
+
 ### Submodule 폴더가 비어있음
 
 ```bash
@@ -357,6 +370,14 @@ git submodule update --init --recursive
 ### Plugin ID를 찾을 수 없음
 
 `settings.gradle.kts`에 `includeBuild("build-logic")`이 있는지 확인하세요.
+
+### `org.jetbrains.kotlin.plugin.serialization` 플러그인을 찾을 수 없음
+
+루트 `build.gradle.kts`의 `plugins` 블록에 아래 항목이 등록되어 있는지 확인하세요.
+
+```kotlin
+alias(libs.plugins.kotlin.serialization) apply false
+```
 
 ---
 
