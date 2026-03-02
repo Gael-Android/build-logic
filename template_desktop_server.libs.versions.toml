@@ -15,13 +15,39 @@ conveyor = "1.12"
 buildkonfig = "0.17.1"
 
 # 프로젝트 식별자 및 Android SDK
+# 용도: 모듈 경로 기반 패키지명(pathToPackageName)의 루트 접두사.
+# 활용: com.yourssu.convention.kmp.library / com.yourssu.convention.cmp.application의 namespace,
+# com.yourssu.convention.buildkonfig의 packageName 생성에 사용.
 projectPackagePrefix = "com.okhotsk.questrpg"
+
+# 용도: Android 애플리케이션 모듈의 namespace 기준값.
+# 활용: com.yourssu.convention.android.application에서 ApplicationExtension.namespace에 직접 적용.
 projectApplicationNamespace = "com.okhotsk.questrpg"
+
+# 용도: Android 앱의 배포 식별자(applicationId).
+# 활용: com.yourssu.convention.android.application의 defaultConfig.applicationId에 적용.
 projectApplicationId = "com.okhotsk.questrpg"
+
+# 용도: Android 컴파일 SDK 레벨 통일.
+# 활용: com.yourssu.convention.android.application(내부 configureKotlinAndroid),
+# com.yourssu.convention.kmp.library, com.yourssu.convention.cmp.application에 적용.
 projectCompileSdkVersion = "36"
+
+# 용도: Android 최소 지원 SDK 레벨 통일.
+# 활용: com.yourssu.convention.android.application(내부 configureKotlinAndroid),
+# com.yourssu.convention.kmp.library, com.yourssu.convention.cmp.application에 적용.
 projectMinSdkVersion = "24"
+
+# 용도: Android 타깃 SDK 레벨 지정.
+# 활용: com.yourssu.convention.android.application의 defaultConfig.targetSdk에 적용.
 projectTargetSdkVersion = "36"
+
+# 용도: Android 앱 버전 코드(정수) 관리.
+# 활용: com.yourssu.convention.android.application의 defaultConfig.versionCode에 적용.
 projectVersionCode = "1"
+
+# 용도: Android 앱 버전 이름(문자열) 관리.
+# 활용: com.yourssu.convention.android.application의 defaultConfig.versionName에 적용.
 projectVersionName = "1.0"
 
 # AndroidX 및 테스트 생태계
