@@ -210,6 +210,7 @@ convention-cmp-application = { id = "com.yourssu.convention.cmp.application", ve
 convention-kmp-library = { id = "com.yourssu.convention.kmp.library", version = "unspecified" }
 convention-cmp-library = { id = "com.yourssu.convention.cmp.library", version = "unspecified" }
 convention-cmp-feature = { id = "com.yourssu.convention.cmp.feature", version = "unspecified" }
+convention-android-uitest = { id = "com.yourssu.convention.android.uitest", version = "unspecified" }
 convention-buildkonfig = { id = "com.yourssu.convention.buildkonfig", version = "unspecified" }
 convention-room = { id = "com.yourssu.convention.room", version = "unspecified" }
 convention-cmp-uitest = { id = "com.yourssu.convention.cmp.uitest", version = "unspecified" }
