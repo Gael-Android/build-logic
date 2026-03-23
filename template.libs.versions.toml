@@ -66,6 +66,9 @@ junit = "4.13.2"
 
 # Kotlin 멀티플랫폼 유틸리티
 kotlinx-coroutines = "1.10.2"
+
+# Auth 기능: auth 테스트에서 사용되는 코루틴 테스트 버전
+kotlinx-coroutines-test = "1.10.2"
 kotlinx-serialization = "1.9.0"
 kotlinx-datetime = "0.7.1"
 androidDesugarJdkLibs = "2.1.5"
@@ -87,6 +90,12 @@ coil = "3.3.0"
 coil-network = "3.3.0"
 moko = "0.19.1"
 kermit = "2.0.6"
+
+# 로그인/자격증명·소셜 로그인 의존성 버전
+androidx-credentials = "1.6.0-rc02"
+googleid = "1.2.0"
+play-services-auth = "21.1.1"
+kakao = "2.23.0"
 
 [libraries]
 # Compose 멀티플랫폼(JetBrains)
@@ -128,6 +137,12 @@ jetbrains-savedstate = { module = "org.jetbrains.androidx.savedstate:savedstate"
 jetbrains-bundle = { module = "org.jetbrains.androidx.core:core-bundle", version.ref = "jetbrains-core-bundle" }
 androidx-navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3-ui" }
 
+# 인증/로그인 공용 라이브러리
+androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "androidx-credentials" }
+androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "androidx-credentials" }
+googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
+play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "play-services-auth" }
+
 # Android 코어 및 앱 컴포넌트
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidx-core" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
@@ -148,6 +163,7 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "a
 # Kotlin 및 Kotlinx 런타임
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx-datetime" }
 
@@ -179,6 +195,8 @@ sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sql
 
 # Firebase 서비스
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+firebase-auth = { module = "com.google.firebase:firebase-auth" }
+firebase-functions = { module = "com.google.firebase:firebase-functions" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
 
 # 이미지, 권한 및 로깅
@@ -188,6 +206,9 @@ moko-permissions = { module = "dev.icerock.moko:permissions", version.ref = "mok
 moko-permissions-compose = { module = "dev.icerock.moko:permissions-compose", version.ref = "moko" }
 moko-permissions-notifications = { module = "dev.icerock.moko:permissions-notifications", version.ref = "moko" }
 touchlab-kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
+
+# 카카오 로그인 라이브러리
+kakao-user = { module = "com.kakao.sdk:v2-user", version.ref = "kakao" }
 
 # 빌드 로직 및 플러그인 클래스패스 아티팩트
 android-desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "androidDesugarJdkLibs" }
