@@ -10,6 +10,8 @@ dependencies {
     // Core Compose dependencies
     commonMainImplementation(library("compose-ui"))
     commonMainImplementation(library("compose-foundation"))
+    commonMainImplementation(library("compose-material-icons-core"))
+    commonMainImplementation(library("compose-material-icons-extended"))
     commonMainImplementation(library("compose-material3"))
 
     // CMP 1.10.0+: Resources and preview tooling are now separate modules

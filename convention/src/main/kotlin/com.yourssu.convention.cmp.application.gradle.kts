@@ -33,6 +33,8 @@ dependencies {
     // Core Compose dependencies
     commonMainImplementation(library("compose-runtime"))
     commonMainImplementation(library("compose-foundation"))
+    commonMainImplementation(library("compose-material-icons-core"))
+    commonMainImplementation(library("compose-material-icons-extended"))
     commonMainImplementation(library("compose-material3"))
     commonMainImplementation(library("compose-ui"))
 
