@@ -22,4 +22,5 @@ kotlin {
 dependencies {
     commonMainImplementation(library("kotlinx-serialization-json"))
     commonTestImplementation(library("kotlin-test"))
+    commonTestImplementation(library("kotlinx-coroutines-test"))
 }

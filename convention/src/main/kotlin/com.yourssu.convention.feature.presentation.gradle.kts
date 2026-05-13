@@ -5,6 +5,10 @@ plugins {
 }
 
 dependencies {
+    commonMainImplementation(project(":core:domain"))
     commonMainImplementation(project(":core:designsystem"))
+    commonMainImplementation(project(":core:navigation"))
+    commonMainImplementation(project(":core:presentation"))
+    commonMainImplementation(project(":core:resources"))
     commonMainImplementation(project(featureSiblingDomainPath(expectedLayer = "presentation")))
 }
